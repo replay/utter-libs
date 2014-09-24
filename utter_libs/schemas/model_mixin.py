@@ -1,6 +1,7 @@
 import abc
 
-from utter_apiobjects.helpers import ApiSchemaHelper
+from utter_libs.schemas.helpers import ApiSchemaHelper
+
 
 class ModelSchemaMixin(object):
 

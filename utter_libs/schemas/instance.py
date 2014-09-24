@@ -1,4 +1,4 @@
-from utter_apiobjects.flavor import flavor_schema
+from utter_libs.schemas.flavor import flavor_schema
 
 image_schema = {
 	'type': 'object',
