@@ -1,8 +1,20 @@
 
-instance_start_parameters_schema = {
+instance_startup_parameters_request_schema = {
 	'$schema': 'http://json-schema.org/draft-04/schema#',
 	'type': 'object',
-	'title': 'InstanceStartParameters',
+	'title': 'InstanceStartupParametersRequest',
+	'properties': {
+		'name': {'type': 'string'},
+	},
+	'required': [
+		'name',
+	],
+}
+
+instance_startup_parameters_response_schema = {
+	'$schema': 'http://json-schema.org/draft-04/schema#',
+	'type': 'object',
+	'title': 'InstanceStartupParametersResponse',
 	'properties': {
 		'image_url': {'type': 'string'},
 		'image_name': {'type': 'string'},

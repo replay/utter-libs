@@ -1,4 +1,5 @@
 from utter_libs.schemas.flavor import flavor_schema
+from utter_libs.schemas.appliance import appliance_schema
 
 ip_address_schema = {
 	'type': 'object',
