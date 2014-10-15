@@ -14,7 +14,7 @@ class ApiSchemaHelper(object):
       if getattr(schema, k) != None:
         attr = getattr(schema, k)
         if type(attr) == types.ListType:
-            setattr(dst, k, attr)
+          setattr(dst, k, attr)
         else:
           setattr(dst, k, attr.as_dict())
 
