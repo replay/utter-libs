@@ -20,17 +20,26 @@ test_data = {
 class TestModelSchemaMixin(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.transaction_object = blockchain.BTCTransaction.from_dict(
+            test_data)
 
     def test_from_and_to_dict(self):
-        transaction_object = blockchain.BTCTransaction.from_dict(test_data)
-        self.assertEqual(test_data, transaction_object.as_dict())
+        self.assertEqual(test_data, self.transaction_object.as_dict())
 
     def test_get_addresses(self):
-        transaction_object = blockchain.BTCTransaction.from_dict(test_data)
         self.assertEqual(
             ['myaddress1', 'blaaddress2'],
-            transaction_object.get_addresses('out'))
+            self.transaction_object.get_addresses('out'))
         self.assertEqual(
             ['anotheraddress1'],
-            transaction_object.get_addresses('in'))
+            self.transaction_object.get_addresses('in'))
+
+    def test_get_value_by_address(self):
+        self.assertEqual(
+            self.transaction_object.get_value_by_address('out', 'myaddress1'),
+            123)
+        self.assertEqual(
+            self.transaction_object.get_value_by_address('in', 'anotheraddress1'),
+            321)
+        self.assertRaises(Exception,
+            self.transaction_object.get_value_by_address, 'out', 'myaddress')

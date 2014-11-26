@@ -161,12 +161,23 @@ class BTCTransaction(Serializer):
         self.inputs = inputs
         self.hash = hash
 
-    def get_addresses(self, direction=None):
-        addresses = []
+    def _get_iterables(self, direction=None):
         if direction == 'out':
-            iterables = self.outputs.outputs
+            return self.outputs.outputs
         elif direction == 'in':
-            iterables = self.inputs.inputs
+            return self.inputs.inputs
+
+    def get_addresses(self, direction=None):
+        iterables = self._get_iterables(direction)
         addr_iterable = itertools.chain(*[i.addresses for i in iterables])
-        addresses = [address.address for address in addr_iterable]
-        return addresses
+        return [address.address for address in addr_iterable]
+
+    def get_value_by_address(self, direction=None, address=None):
+        iterables = self._get_iterables(direction)
+        for iterable in iterables:
+            if address in [
+                    btcaddress.address for btcaddress in iterable.addresses]:
+                break
+        else:
+            raise Exception('address {0} not found'.format(address))
+        return iterable.value
