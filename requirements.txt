@@ -1,1 +1,4 @@
-python-jsonschema-objects
+-e git+https://github.com/replay/python-jsonschema-objects.git#egg=utter-libs==master
+nose
+coverage
+six

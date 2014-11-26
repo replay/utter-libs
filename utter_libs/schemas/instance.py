@@ -37,6 +37,7 @@ instance_schema = {
 }
 
 instance_list_schema = {
+	'$schema': 'http://json-schema.org/draft-04/schema#',
 	'type': 'object',
 	'title': 'InstanceList',
 	'properties': {
