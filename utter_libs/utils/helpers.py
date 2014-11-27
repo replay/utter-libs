@@ -39,7 +39,7 @@ class ApiSchemaHelper(object):
     def iterate_properties(cls, src, properties):
         data = {}
         for (k, v) in six.iteritems(properties):
-            if type(v['type']) == six.string_types:
+            if isinstance(v['type'], six.string_types):
                 val = cls.get_attribute_or_key(src, k)
                 if val != None:
                     data[k] = val
