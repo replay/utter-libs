@@ -3,7 +3,8 @@ python:
   - "3.4"
   - "3.3"
   - "2.7"
-script: nosetests
+  - "2.6"
+script: tox
 notifications:
   email:
     recipients:

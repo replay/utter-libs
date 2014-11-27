@@ -9,12 +9,12 @@ class ApiSchemaHelper(object):
     # take and object and fill it with values from schema content type
     @staticmethod
     def fill_object_from_schema(schema, dst, exceptions=[]):
-        for (k, v) in schema.__class__.__dict__['__propinfo__'].iteritems():
+        for (k, v) in six.iteritems(schema.__class__.__dict__['__propinfo__']):
             if k in exceptions:
                 continue
             if getattr(schema, k) != None:
                 attr = getattr(schema, k)
-                if type(attr) == types.ListType:
+                if isinstance(attr, list):
                     setattr(dst, k, [
                         val.as_dict()
                         for val in attr
@@ -29,7 +29,7 @@ class ApiSchemaHelper(object):
 
     @classmethod
     def get_attribute_or_key(cls, src, k):
-        if type(src) == types.DictType and src.get(k, None) != None:
+        if isinstance(src, dict) and src.get(k, None) != None:
             return src.get(k)
         elif hasattr(src, k) and getattr(src, k) != None:
             return getattr(src, k)
